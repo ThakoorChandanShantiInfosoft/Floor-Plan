@@ -1,19 +1,21 @@
 import React from 'react';
-import ResizableRect from 'react-resizable-rotatable-draggable';
+import ResizableRect from 'react-resizable-rotatable-draggable-touch-v2';
+
 import DeleteIcon from '@mui/icons-material/Delete';
 
 const ResizableContent = ({ index, top, left, width, height, rotateAngle, containerWidth, containerHeight, onUpdate, onDelete, name }) => {
 
-  const handleResize = (style) => {
-    const { top, left, width, height } = style;
+  const handleResize = (styleSize, isShiftKey, type, event) => {
+    const { top, left, width, height } = styleSize.style;
     onUpdate(index, { top, left, width, height, rotateAngle });
   };
 
-  const handleRotate = (rotateAngle) => {
-    onUpdate(index, { top, left, width, height, rotateAngle });
+  const handleRotate = (rotateState, event) => {
+    onUpdate(index, { top, left, width, height, rotateAngle: rotateState.rotateAngle });
   };
 
-  const handleDrag = (deltaX, deltaY) => {
+  const handleDrag = (dragState, event) => {
+    const { deltaX, deltaY } = dragState;
     const newLeft = Math.min(Math.max(0, left + deltaX), containerWidth - width);
     const newTop = Math.min(Math.max(0, top + deltaY), containerHeight - height);
     onUpdate(index, { top: newTop, left: newLeft, width, height, rotateAngle });
