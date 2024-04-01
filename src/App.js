@@ -39,8 +39,8 @@ function App() {
   const handleMouseMove = useCallback((e) => {
     if (!isDragging) return;
     const newPos = {
-      x: e.clientX - dragStart.x,
-      y: e.clientY - dragStart.y,
+      x: e.clientX - dragStart.x - containerRef.current.getBoundingClientRect().left,
+      y: e.clientY - dragStart.y - containerRef.current.getBoundingClientRect().top,
     };
     setPosition(newPos);
   }, [isDragging, dragStart]);
@@ -103,8 +103,8 @@ function App() {
     setIsDragging(true);
     const rect = containerRef.current.getBoundingClientRect();
     setDragStart({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
+      x: e.clientX - rect.left - position.x, // Adjust for the current position
+      y: e.clientY - rect.top - position.y,  // Adjust for the current position
     });
   };
 
