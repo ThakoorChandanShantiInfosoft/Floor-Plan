@@ -1,6 +1,6 @@
 import _isNil from 'lodash/isNil';
+import { Button } from 'antd';
 import React, { useRef, useState, useEffect, useCallback } from 'react';
-import { Button } from '@mui/material';
 import ResizableContent from './ResizableContent';
 import './App.css';
 
@@ -136,7 +136,7 @@ function App() {
   return (
     <>
       <div className='buttons-container'>
-        <Button variant="contained" component="span" onClick={() => fileInputRef.current.click()}>
+        <Button type="primary" onClick={() => fileInputRef.current.click()}>
           Upload Image
         </Button>
         <input
@@ -145,7 +145,7 @@ function App() {
           onChange={handleImageUpload}
           ref={fileInputRef}
         />
-        <Button disabled={!imageURL} variant="contained" onClick={() => setBeds([...beds, {
+        <Button disabled={!imageURL} onClick={() => setBeds([...beds, {
           top: 30,
           left: 150,
           width: 150,
@@ -155,7 +155,7 @@ function App() {
         }])}>
           Add Bed
         </Button>
-        <Button disabled={!imageURL} variant="contained" onClick={handleReset}>
+        <Button disabled={!imageURL} onClick={handleReset}>
           Reset
         </Button>
       </div>

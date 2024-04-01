@@ -1,7 +1,6 @@
 import React from 'react';
 import ResizableRect from 'react-resizable-rotatable-draggable-touch-v2';
-
-import DeleteIcon from '@mui/icons-material/Delete';
+import { DeleteOutlined } from '@ant-design/icons';
 
 const ResizableContent = ({ index, top, left, width, height, rotateAngle, containerWidth, containerHeight, onUpdate, onDelete, name }) => {
 
@@ -48,11 +47,10 @@ const ResizableContent = ({ index, top, left, width, height, rotateAngle, contai
           height,
           transform: `rotate(${rotateAngle}deg)`,
         }}
-      >
-      </div>
+      ></div>
       <div style={tooltipStyle}>
         <div>{name}</div>
-        <DeleteIcon onClick={() => onDelete(index)} style={{ fontSize: '12px', marginLeft: '5px', color: 'red' }} />
+        <DeleteOutlined onClick={() => onDelete(index)} style={{ fontSize: '12px', marginLeft: '5px', color: 'red' }} />
       </div>
       <ResizableRect
         top={top}
